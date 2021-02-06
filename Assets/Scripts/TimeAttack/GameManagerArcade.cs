@@ -9,7 +9,11 @@ public class GameManagerArcade : MonoBehaviour
     [SerializeField] int timeLeft = 60;
     public Text timeText;
     public Text scoreText;
+    public Text highScoreText;
+    public Button pauseButton;
+
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
     public GameObject levelMenu;
 
     public GameObject[] level;
@@ -36,7 +40,7 @@ public class GameManagerArcade : MonoBehaviour
             UpdateTimeText();
         }
 
-        if (timeLeft == 0)
+        if (timeLeft <= 0)
             StopLevel();
     }
 
@@ -47,12 +51,16 @@ public class GameManagerArcade : MonoBehaviour
 
     void StopLevel()
     {
+        timeLeft = 0;
+        pauseButton.gameObject.SetActive(false);
         gameOverPanel.SetActive(true);
         Text score = gameOverPanel.transform.GetChild(1).gameObject.GetComponent<Text>();
-        score.text = scoreText.text.Remove(0, 7);
+        score.text = scoreText.text;
         ResetLevel(currentLevel);
         scoreText.gameObject.SetActive(false);
         timeText.gameObject.SetActive(false);
+        highScoreText.gameObject.SetActive(false);
+
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
         {
             Destroy(ball);
@@ -62,11 +70,13 @@ public class GameManagerArcade : MonoBehaviour
 
     public void StartLevel(int levelNo)
     {
+        pauseButton.gameObject.SetActive(true);
         GetComponent<AudioSource>().Play();
         levelMenu.SetActive(false);
         currentLevel = levelNo;
         scoreText.gameObject.SetActive(true);
-        timeText.gameObject.SetActive(true);        
+        timeText.gameObject.SetActive(true);
+        highScoreText.gameObject.SetActive(true);   
         level[currentLevel - 1].SetActive(true);
         UpdateTimeText();
         StartCoroutine("TimeCounting");
@@ -84,7 +94,8 @@ public class GameManagerArcade : MonoBehaviour
         GetComponent<AudioSource>().Play();
         gameOverPanel.SetActive(false);
         scoreText.gameObject.SetActive(true);
-        timeText.gameObject.SetActive(true);        
+        timeText.gameObject.SetActive(true);
+        highScoreText.gameObject.SetActive(true);   
         level[currentLevel - 1].SetActive(true);
         UpdateTimeText();
         StartCoroutine("TimeCounting");
@@ -99,13 +110,37 @@ public class GameManagerArcade : MonoBehaviour
         lm.utilScore = 0;
         lm.trials = 0;
         lm.DisplayScore();
-        GameObject.Find("Traject").SetActive(false);
-        GameObject.Find("Trigger").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+
+        if (GameObject.Find("Traject"))
+            GameObject.Find("Traject").SetActive(false);
+        if (GameObject.Find("Trigger"))
+            GameObject.Find("Trigger").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
     }
 
     public void LoadScene(int scene)
     {
         GetComponent<AudioSource>().Play();
         SceneManager.LoadScene(scene);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+
+    }
+
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void QuitLevel()
+    {
+        pausePanel.SetActive(false);
+        StopCoroutine("TimeCounting");
+        StopLevel();
+        Time.timeScale = 1;
     }
 }

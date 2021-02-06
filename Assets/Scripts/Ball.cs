@@ -52,9 +52,14 @@ public class Ball : MonoBehaviour
 
     void ProcessBall()
     {
+        GameObject lives = GameObject.Find("Lives");
         Complete complete = GameObject.FindWithTag("Basket").GetComponent<Complete>();
         LevelManager lvManager = GameObject.FindWithTag("Level").GetComponent<LevelManager>();
-        if (complete && !complete.completed && lvManager.trials >= 6)
+
+        if (lives)
+            lives.GetComponent<Lives>().UpdateLives();
+
+        if (complete && !complete.completed && lvManager.trials >= 3)
         {
             complete.StopLevel();
         }

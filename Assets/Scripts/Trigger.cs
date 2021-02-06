@@ -67,8 +67,8 @@ public class Trigger : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginD
     {
         shootSound.Play();
         levelManager.trials++;
-        LevelManager lv = GameObject.FindWithTag("Level").GetComponent<LevelManager>();
-        lv.DisplayTrial();
+        //LevelManager lv = GameObject.FindWithTag("Level").GetComponent<LevelManager>();
+        //lv.DisplayTrial();
 
         GameObject newBall = Instantiate(ball);
         newBall.transform.SetParent(transform.parent.transform.parent);

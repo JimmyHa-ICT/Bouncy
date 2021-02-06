@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManagerChallenge : MonoBehaviour
 {
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
     public GameObject levelMenu;
 
     public GameObject losePanel;
@@ -15,7 +16,9 @@ public class GameManagerChallenge : MonoBehaviour
     public int currentLevel;
     public Image[] star;
 
-    public Text trialText;
+    //public Text trialText;
+    public Button pauseButton;
+    public GameObject lives;
 
     void Start()
     {
@@ -29,19 +32,25 @@ public class GameManagerChallenge : MonoBehaviour
     }
 
     public void StopLevel(int trials, bool completed)
-    {        
+    {
+        pauseButton.gameObject.SetActive(false);      
         if (completed)
         {
+            if (currentLevel >= PlayerPrefs.GetInt("levelAt"))
+            {
+                PlayerPrefs.SetInt("levelAt", currentLevel + 1);
+            }
+
             gameOverPanel.SetActive(true);
 
-            if (trials > 3)
+            if (trials >= 3)
             {    
                 star[0].color = new Color(1, 1, 1, 1);
                 star[1].color = new Color(0, 0, 0, 0.3f);
                 star[2].color = new Color(0, 0, 0, 0.3f);
             }
 
-            else if (trials > 1)
+            else if (trials >= 2)
             {
                 star[0].color = new Color(1, 1, 1, 1);
                 star[1].color = new Color(0, 0, 0, 0.3f);
@@ -69,7 +78,8 @@ public class GameManagerChallenge : MonoBehaviour
             Destroy(ball);
         }
         level[currentLevel - 1].SetActive(false);
-        trialText.gameObject.SetActive(false);
+        //trialText.gameObject.SetActive(false);
+        lives.SetActive(false);
     }
 
     public void StartLevel(int levelNo)
@@ -78,17 +88,23 @@ public class GameManagerChallenge : MonoBehaviour
         levelMenu.SetActive(false);
         currentLevel = levelNo;
         level[currentLevel - 1].SetActive(true);
-        trialText.gameObject.SetActive(true);
+        //trialText.gameObject.SetActive(true);
+        pauseButton.gameObject.SetActive(true);
+
+        lives.SetActive(true);
+        //lives.GetComponent<Lives>().UpdateLives();
     }
 
     public void ShowLevels()
     {
         level[currentLevel - 1].SetActive(false);
-        trialText.gameObject.SetActive(false);
+        //trialText.gameObject.SetActive(false);
         GetComponent<AudioSource>().Play();
         gameOverPanel.SetActive(false);
         losePanel.SetActive(false);
         levelMenu.SetActive(true);
+
+        lives.SetActive(false);
     }
 
     public void RestartLevel()
@@ -97,7 +113,11 @@ public class GameManagerChallenge : MonoBehaviour
         gameOverPanel.SetActive(false);
         losePanel.SetActive(false);
         level[currentLevel - 1].SetActive(true);
-        trialText.gameObject.SetActive(true);
+        pauseButton.gameObject.SetActive(true);
+        //trialText.gameObject.SetActive(true);
+
+        lives.SetActive(true);
+        //lives.GetComponent<Lives>().UpdateLives();
     }
 
     void ResetLevel(int l)
@@ -119,5 +139,25 @@ public class GameManagerChallenge : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
         SceneManager.LoadScene(scene);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+
+    }
+
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void QuitLevel()
+    {
+        pausePanel.SetActive(false);
+        StopLevel(0, false);
+        Time.timeScale = 1;
     }
 }

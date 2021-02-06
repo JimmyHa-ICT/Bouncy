@@ -41,7 +41,15 @@ public class Score : MonoBehaviour
                 else
                     CreateTween("Streak +" + (levelManager.utilScore + 1));
                 levelManager.utilScore++;
+
+                if (levelManager.score > levelManager.highscore)
+                {
+                    levelManager.highscore = levelManager.score;
+                    levelManager.UpdateHighScore();
+                }
+
                 levelManager.DisplayScore();
+                levelManager.DisplayHighscore();
             }
         }
     }
