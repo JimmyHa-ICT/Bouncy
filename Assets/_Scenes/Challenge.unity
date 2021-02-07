@@ -22778,14 +22778,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 292219579}
-    - target: {fileID: 7285109629014769225, guid: b7dca602fe88a616888ca0daed8f44ef, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285109629014769225, guid: b7dca602fe88a616888ca0daed8f44ef, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManagerChallenge, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7285109629014769227, guid: b7dca602fe88a616888ca0daed8f44ef, type: 3}
       propertyPath: m_Name
       value: 1

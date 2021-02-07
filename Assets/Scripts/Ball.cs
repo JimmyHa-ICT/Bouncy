@@ -28,8 +28,10 @@ public class Ball : MonoBehaviour
             ProcessBall();
         }
 
-        if (rt.anchoredPosition.x < -500 || rt.anchoredPosition.x > 500)
+        if ((rt.anchoredPosition.x < -500 || rt.anchoredPosition.x > 500))
         {
+            if (GameObject.FindWithTag("Level"))
+                GameObject.FindWithTag("Level").GetComponent<LevelManager>().utilScore = 0;
             Destroy(gameObject);
             ProcessBall();
         }
