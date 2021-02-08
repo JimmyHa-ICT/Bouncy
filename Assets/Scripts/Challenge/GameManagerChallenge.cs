@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class GameManagerChallenge : MonoBehaviour
 {
@@ -138,6 +139,10 @@ public class GameManagerChallenge : MonoBehaviour
     public void LoadScene(int scene)
     {
         GetComponent<AudioSource>().Play();
+
+        if (Advertisement.IsReady())
+            Advertisement.Show();
+
         SceneManager.LoadScene(scene);
     }
 

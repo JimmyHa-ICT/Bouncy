@@ -1,0 +1,4 @@
+#Mon Feb 08 16:47:42 ICT 2021
+base.0=/home/jimmy/Create_with_code/Bouncy/Temp/gradleOut/launcher/build/intermediates/dex/release/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
