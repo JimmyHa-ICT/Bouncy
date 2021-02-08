@@ -133,7 +133,7 @@
 74-->[:unityLibrary] /home/jimmy/Create_with_code/Bouncy/Temp/gradleOut/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:61:9-63:68
 75            android:name="unity.build-id"
 75-->[:unityLibrary] /home/jimmy/Create_with_code/Bouncy/Temp/gradleOut/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:62:13-42
-76            android:value="5d81f45f-39bc-4d47-aea3-8578ae347609" />
+76            android:value="3732e36f-09f4-4422-a3d3-a415e5fc8fd6" />
 76-->[:unityLibrary] /home/jimmy/Create_with_code/Bouncy/Temp/gradleOut/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:63:13-65
 77
 78        <activity
