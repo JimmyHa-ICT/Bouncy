@@ -24,7 +24,7 @@ public class Trigger : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginD
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("OnPointerDown");
+        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -39,7 +39,6 @@ public class Trigger : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginD
 
         Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
         Vector2 velocity = -rectTransform.anchoredPosition / velocityModifier;
-        Debug.Log(velocity);
 
         Vector2[] location = Plot(ballRb, new Vector2(0, 0), velocity, trajectory_step);
 

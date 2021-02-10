@@ -42,7 +42,7 @@ public class Ball : MonoBehaviour
         {
             hitSound.Play();
             hitCount++;
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
         }
 
         if (other.gameObject.CompareTag("Ground"))

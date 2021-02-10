@@ -19,8 +19,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
@@ -855,4 +853,4 @@ ScriptsOnlyBuild:
   - Assets/_Scenes/Menu.unity
   - Assets/_Scenes/Challenge.unity
   - Assets/_Scenes/Time Attack.unity
-  playerPath: /home/jimmy/Create_with_code/Bouncy/Builds/Android/official_bundle.aab
+  playerPath: /home/jimmy/Create_with_code/Bouncy/Builds/Android/official_apk.apk

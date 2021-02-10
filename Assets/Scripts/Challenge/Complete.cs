@@ -28,7 +28,7 @@ public class Complete : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Ball"))
         {
-            Debug.Log("In");
+            //Debug.Log("In");
             int hitCount = other.GetComponent<Ball>().hitCount;
 
             if (hitCount == levelManager.levelMission)
